@@ -1,0 +1,91 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''UIBox_button({button = 'your_collection_editions', label = {localize('b_editions')}, count = G.DISCOVER_TALLIES.editions, minw = 5, id = 'your_collection_editions'}),'''
+position = "after"
+payload = '''
+UIBox_button({button = 'your_collection_stickers', label = {"Stickers"}, minw = 5, id = 'your_collection_stickers'}),
+'''
+match_indent = false
+overwrite = false
+
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = '''G.FUNCS.your_collection_editions = function(e)'''
+position = "before"
+payload = '''
+
+G.FUNCS.your_collection_stickers = function(e)
+  G.SETTINGS.paused = true
+  G.FUNCS.overlay_menu{
+    definition = create_UIBox_your_collection_stickers(),
+  }
+end
+
+'''
+match_indent = false
+overwrite = false
+
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''function create_UIBox_your_collection_decks()'''
+position = "before"
+payload = '''
+function create_UIBox_your_collection_stickers()
+    local deck_tables = {}
+
+  G.your_collection = {}
+  for j = 1, 2 do
+    G.your_collection[j] = CardArea(
+      G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
+      5*G.CARD_W,
+      1.03*G.CARD_H, 
+      {card_limit = 4, type = 'title', highlight_limit = 0, collection = true})
+    table.insert(deck_tables, 
+    {n=G.UIT.R, config={align = "cm", padding = 0, no_fill = true}, nodes={
+      {n=G.UIT.O, config={object = G.your_collection[j]}}
+    }}
+    )
+  end
+
+
+      local center = G.P_CENTERS["j_joker"]
+      local card = Card(G.your_collection[1].T.x + G.your_collection[1].T.w/2, G.your_collection[1].T.y, G.CARD_W, G.CARD_H, nil, center)
+      card.pinned = true
+      G.your_collection[1]:emplace(card)
+      local card = Card(G.your_collection[1].T.x + G.your_collection[1].T.w/2, G.your_collection[1].T.y, G.CARD_W, G.CARD_H, nil, center)
+      card:set_eternal(true)
+      G.your_collection[1]:emplace(card)
+      local card = Card(G.your_collection[1].T.x + G.your_collection[1].T.w/2, G.your_collection[1].T.y, G.CARD_W, G.CARD_H, nil, center)
+      card:set_perishable(true)
+      G.your_collection[1]:emplace(card)
+      local card = Card(G.your_collection[1].T.x + G.your_collection[1].T.w/2, G.your_collection[1].T.y, G.CARD_W, G.CARD_H, nil, center)
+      card:set_rental(true)
+      G.your_collection[1]:emplace(card)
+      
+    for _, v in ipairs(SMODS.Sticker.obj_buffer) do
+      local card = Card(G.your_collection[2].T.x + G.your_collection[2].T.w/2, G.your_collection[2].T.y, G.CARD_W, G.CARD_H, nil, center)
+      SMODS.Stickers[v]:set_sticker(card, true)
+      G.your_collection[2]:emplace(card)
+    end
+      
+
+  
+  local t = create_UIBox_generic_options({ infotip = {
+                "Jokers may each have",
+                "Different stickers"
+                }, back_func = G.ACTIVE_MOD_UI and "openModUI_"..G.ACTIVE_MOD_UI.id or exit or 'your_collection', snap_back = true, contents = {
+            {n=G.UIT.R, config={align = "cm", minw = 2.5, padding = 0.1, r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=deck_tables},
+          }})
+  return t
+end
+'''
+match_indent = false
+overwrite = false
