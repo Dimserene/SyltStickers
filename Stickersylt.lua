@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds interesting stickers
 --- BADGE_COLOUR: 00009C
 
-SMODS.Atlas {  
+SMODS.Atlas {
     key = 'stickersylt',
     px = 71,
     py = 95,
@@ -15,20 +15,18 @@ SMODS.Atlas {
 SMODS.Sticker {
 	key = "wall",
 	loc_txt = {
-        description = {
-            name = "Hoard",
-            text = {
-                "Gain {C:money}$8{} at the end of each round",
-                "Score requirement {C:mult}X4",
-                "When {C:attention}Boss Blind{} is selected"
-            }
+        name = "Hoard",
+        text = {
+            "Gain {C:money}$8{} at the end of each round",
+            "Score requirement {C:mult}X4",
+            "When {C:attention}Boss Blind{} is selected"
         },
         label = "Hoard",
     },
 	rate = 0.09,
     atlas = 'stickersylt',
 	pos = { x = 0, y = 0 },
-	colour = HEX 'B26CBB',
+	badge_colour = HEX 'B26CBB',
 	default_compat = true,
 	compat_exceptions = {},
 	sets = { Joker = true },
@@ -56,20 +54,18 @@ SMODS.Sticker {
 SMODS.Sticker {
 	key = "overreroll",
 	loc_txt = {
-        description = {
-            name = "Hefty",
-            text = {
-                "Reroll cost {C:money}$1{} more",
-                "In this run",
-                "if played hand is {C:attention}High Card"
-            }
+        name = "Hefty",
+        text = {
+            "Reroll cost {C:money}$1{} more",
+            "In this run",
+            "if played hand is {C:attention}High Card"
         },
         label = "Hefty",
     },
 	rate = 0.09,
     atlas = 'stickersylt',
 	pos = { x = 1, y = 0 },
-	colour = HEX 'B26CBB',
+	badge_colour = HEX 'B26CBB',
 	default_compat = true,
 	compat_exceptions = {},
 	sets = { Joker = true },
@@ -89,20 +85,18 @@ SMODS.Sticker {
 SMODS.Sticker {
 	key = "mplanet",
 	loc_txt = {
-        description = {
-            name = "Minor Star",
-            text = {
-                "When skipping {C:attention}Booster Pack",
-                "Create a {C:planet}Planet Card{}",
-                "{C:inactive}(Must have room){}",
-            }
+        name = "Minor Star",
+        text = {
+            "When skipping {C:attention}Booster Pack",
+            "Create a {C:planet}Planet Card{}",
+            "{C:inactive}(Must have room){}",
         },
         label = "Minor Star",
     },
 	rate = 0.08,
     atlas = 'stickersylt',
 	pos = { x = 2, y = 0 },
-	colour = G.C.DARK_EDITION,
+	badge_colour = G.C.DARK_EDITION,
 	default_compat = true,
 	compat_exceptions = {},
 	sets = { Joker = true },
@@ -130,22 +124,20 @@ SMODS.Sticker {
 SMODS.Sticker {
 	key = "splucky",
 	loc_txt = {
-        description = {
-            name = "Gamble",
-            text = {
-                "Each scored {C:attention}Lucky Card{} will",
-                "Make this card",
-                "Gain {C:money}$7{} of {C:attention}Sell Value{}",
-                "When holding a {C:attention}Steel Card",
-                "Lose all your money",
-            }
+        name = "Gamble",
+        text = {
+            "Each scored {C:attention}Lucky Card{} will",
+            "Make this card",
+            "Gain {C:money}$7{} of {C:attention}Sell Value{}",
+            "When holding a {C:attention}Steel Card",
+            "Lose all your money",
         },
         label = "Gamble",
     },
 	rate = 0.08,
     atlas = 'stickersylt',
 	pos = { x = 3, y = 0 },
-	colour = G.C.DARK_EDITION,
+	badge_colour = G.C.DARK_EDITION,
 	default_compat = true,
 	compat_exceptions = {},
 	sets = { Joker = true },
@@ -170,22 +162,20 @@ SMODS.Sticker {
 SMODS.Sticker {
 	key = "shadow",
 	loc_txt = {
-        description = {
-            name = "Shadow",
-            text = {
-                "After playing a {C:attention}Flush",
-                "Decrease level of all poker hands",
-                "When playing a {C:attention}Straight",
-                "All {C:hearts}Hearts{} in your deck",
-                "Gain{C:chips} +1 {}extra chips",
-            }
+        name = "Shadow",
+        text = {
+            "After playing a {C:attention}Flush",
+            "Decrease level of all poker hands",
+            "When playing a {C:attention}Straight",
+            "All {C:hearts}Hearts{} in your deck",
+            "Gain{C:chips} +1 {}extra chips",
         },
         label = "Shadow",
     },
 	rate = 0.12,
     atlas = 'stickersylt',
 	pos = { x = 4, y = 0 },
-	colour = G.C.DARK_EDITION,
+	badge_colour = G.C.DARK_EDITION,
 	default_compat = true,
 	compat_exceptions = {},
 	sets = { Joker = true },
@@ -214,20 +204,18 @@ SMODS.Sticker {
 SMODS.Sticker {
 	key = "sppinned",
 	loc_txt = {
-        description = {
-            name = "Heresy",
-            text = {
-                "Add {C:attention}Pinned{} to this card",
-                "At the end of each round",
-                "Create a {C:dark_edition}Negative{} {C:tarot}Wheel of Fortune",
-            }
+        name = "Heresy",
+        text = {
+            "Add {C:attention}Pinned{} to this card",
+            "At the end of each round",
+            "Create a {C:dark_edition}Negative{} {C:tarot}Wheel of Fortune",
         },
         label = "Heresy",
     },
 	rate = 0.04,
     atlas = 'stickersylt',
 	pos = { x = 1, y = 2 },
-	colour = G.C.DARK_EDITION,
+	badge_colour = G.C.DARK_EDITION,
 	default_compat = true,
 	compat_exceptions = {},
 	sets = { Joker = true },
