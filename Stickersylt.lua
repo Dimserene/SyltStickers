@@ -23,7 +23,7 @@ SMODS.Sticker {
         },
         label = "Hoard",
     },
-	rate = 0.045,
+	rate = 0.03,
     atlas = 'stickersylt',
 	pos = { x = 0, y = 0 },
 	badge_colour = HEX 'B26CBB',
@@ -62,7 +62,7 @@ SMODS.Sticker {
         },
         label = "Hefty",
     },
-	rate = 0.045,
+	rate = 0.03,
     atlas = 'stickersylt',
 	pos = { x = 1, y = 0 },
 	badge_colour = HEX 'B26CBB',
@@ -93,7 +93,7 @@ SMODS.Sticker {
         },
         label = "Minor Star",
     },
-	rate = 0.04,
+	rate = 0.02,
     atlas = 'stickersylt',
 	pos = { x = 2, y = 0 },
 	badge_colour = G.C.DARK_EDITION,
@@ -121,85 +121,7 @@ SMODS.Sticker {
     end
 }
 
-SMODS.Sticker {
-	key = "splucky",
-	loc_txt = {
-        name = "Gamble",
-        text = {
-            "Each scored {C:attention}Lucky Card{} will",
-            "Make this card",
-            "Gain {C:money}$7{} of {C:attention}Sell Value{}",
-            "When holding a {C:attention}Steel Card",
-            "Lose all your money",
-        },
-        label = "Gamble",
-    },
-	rate = 0.04,
-    atlas = 'stickersylt',
-	pos = { x = 3, y = 0 },
-	badge_colour = G.C.DARK_EDITION,
-	default_compat = true,
-	compat_exceptions = {},
-	sets = { Joker = true },
-	needs_enable_flag = false,
-    calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play then
-            if context.other_card.ability.effect == "Lucky Card" then
-                card.ability.extra_value = card.ability.extra_value + 7
-			    card:set_cost()
-                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize('k_val_up'), colour = G.C.MONEY})
-			end
-        end
-        if context.cardarea == G.hand and context.individual and not context.end_of_round then
-            if context.other_card.ability.effect == "Steel Card" then
-                ease_dollars(-G.GAME.dollars, true)
-                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = "0!"..G.GAME.dollars, colour = G.C.MONEY})
-            end
-        end
-    end
-}
 
-SMODS.Sticker {
-	key = "shadow",
-	loc_txt = {
-        name = "Shadow",
-        text = {
-            "After playing a {C:attention}Flush",
-            "Decrease level of all poker hands",
-            "When playing a {C:attention}Straight",
-            "All {C:hearts}Hearts{} in your deck",
-            "Gain{C:chips} +1 {}extra chips",
-        },
-        label = "Shadow",
-    },
-	rate = 0.06,
-    atlas = 'stickersylt',
-	pos = { x = 4, y = 0 },
-	badge_colour = G.C.DARK_EDITION,
-	default_compat = true,
-	compat_exceptions = {},
-	sets = { Joker = true },
-	needs_enable_flag = false,
-    calculate = function(self, card, context)
-        if context.joker_main and context.cardarea == G.jokers then
-            if context.scoring_name == "Flush" then
-                for k, v in pairs(G.GAME.hands) do
-                    level_up_hand(card, k, true, -1)
-                end
-                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = "Decrease level of all poker hands", colour = G.C.MULT})
-            end
-            if context.scoring_name == "Straight" then
-                for k, v in pairs(G.playing_cards) do
-                    if v:is_suit('Hearts') then
-                        v.ability.perma_bonus = v.ability.perma_bonus or 0
-                        v.ability.perma_bonus = v.ability.perma_bonus + 1
-                    end
-                end
-                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = "Gain +1 extra chips", colour = G.C.CHIPS})
-            end
-        end
-    end
-}
 
 SMODS.Sticker {
 	key = "sppinned",
